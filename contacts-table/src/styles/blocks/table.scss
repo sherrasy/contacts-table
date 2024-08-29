@@ -1,0 +1,35 @@
+@import '../global/variables';
+
+.main-page__table {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-table {
+  .header-row {
+    color: $color-deluge;
+  }
+
+  .sort-arrow {
+    margin-left: 6px;
+  }
+
+  .sort-arrow--reverse {
+    margin-left: 6px;
+    transform: rotate(180deg);
+  }
+
+  &__row {
+    display: flex;
+    color: $color-purple-heart;
+    gap: 50px;
+
+    p:first-child {
+      width: 540px;
+    }
+
+    p:not(:first-child) {
+      width: 245px;
+    }
+  }
+}

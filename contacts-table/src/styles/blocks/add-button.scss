@@ -1,0 +1,16 @@
+@import '../global/variables';
+
+.main-page__add-button {
+  width: 174px;
+  height: 44px;
+  border-radius: 30px;
+  border: 0;
+  background-color: $color-lavender;
+  color: $color-purple-heart;
+
+  & > span {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
