@@ -1,0 +1,51 @@
+.contact-form {
+  font-size: 16px;
+  &__input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    width: 277px;
+    height: 60px;
+    border-radius: 30px;
+    border: 0;
+    background-color: $color-purple-heart;
+    color: $color-white;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled {
+      cursor: auto;
+    }
+
+    & > span {
+      font-family: 'Unbounded';
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.form-input {
+  margin: 20px 0;
+
+  &__label {
+    font-weight: 700;
+  }
+
+  &__label-required {
+    margin-left: 2px;
+    color: $color-purple-heart;
+  }
+
+  &__input {
+    margin-top: 5px;
+    padding: 20px;
+    border: 1px solid $color-magnolia;
+    border-radius: 16px;
+  }
+}

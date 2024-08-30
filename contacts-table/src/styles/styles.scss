@@ -7,9 +7,14 @@
 
 // Pages
 //-----------------
-@import './main-page';
+@import './pages/main-page';
+@import './pages/add-contact-page';
+@import './pages/edit-contact-page';
 
 // Blocks
 //-----------------
 @import './blocks/add-button';
+@import './blocks/close-button';
+@import './blocks/error-message';
+@import './blocks/form';
 @import './blocks/table';

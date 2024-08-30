@@ -1,15 +1,9 @@
-@import '../global/variables';
-
 .main-page__table {
   display: flex;
   flex-direction: column;
 }
 
 .contacts-table {
-  .header-row {
-    color: $color-deluge;
-  }
-
   .sort-arrow {
     margin-left: 6px;
   }
@@ -19,17 +13,44 @@
     transform: rotate(180deg);
   }
 
-  &__row {
+  .sort-arrow--none {
+    margin-left: 6px;
+    opacity: 0.3;
+  }
+
+  &__row,
+  &__header-row {
     display: flex;
-    color: $color-purple-heart;
+    padding-left: 16px;
     gap: 50px;
+  }
 
-    p:first-child {
-      width: 540px;
-    }
+  &__row {
+    color: $color-purple-heart;
+  }
 
-    p:not(:first-child) {
-      width: 245px;
-    }
+  &__row:hover {
+    cursor: pointer;
+    background-color: $color-magnolia;
+  }
+
+  &__header-row-cell,
+  &__row-cell {
+    width: 245px;
+  }
+
+  &__header-row-cell:first-child,
+  &__row-cell:first-child {
+    width: 540px;
+  }
+
+  &__row-cell:first-child {
+    font-family: 'Unbounded';
+  }
+
+  &__header-row {
+    color: $color-deluge;
+    font-family: 'Proxima Nova';
+    font-size: 18px;
   }
 }

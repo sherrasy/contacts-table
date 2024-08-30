@@ -1,0 +1,18 @@
+.error-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Unbounded';
+  font-size: 30px;
+
+  &__info {
+    color: $color-deluge;
+  }
+
+  &__back-link {
+    color: $color-purple-heart;
+    cursor: pointer;
+  }
+}
