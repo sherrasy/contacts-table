@@ -1,0 +1,59 @@
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Proxima Nova Rg';
+  src: url('/src/assets/fonts/ProximaNova-Regular.woff2') format('woff2'),
+    url('/src/assets/fonts/ProximaNova-Regular.woff') format('woff'),
+    url('/src/assets/fonts/ProximaNova-Regular.ttf') format('tff');
+}
+
+@font-face {
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Proxima Nova';
+  src: url('/src/assets/fonts/ProximaNova-Medium.woff2') format('woff2'),
+    url('/src/assets/fonts/ProximaNova-Medium.woff') format('woff'),
+    url('/src/assets/fonts/ProximaNova-Medium.ttf') format('tff');
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Proxima Nova Rg';
+  src: url('/src/assets/fonts/ProximaNova-Bold.woff2') format('woff2'),
+    url('/src/assets/fonts/ProximaNova-Bold.woff') format('woff'),
+    url('/src/assets/fonts/ProximaNova-Bold.ttf') format('tff');
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Unbounded';
+  src: url('/src/assets/fonts/Unbounded-Regular.woff2') format('woff2'),
+    url('/src/assets/fonts/Unbounded-Regular.woff') format('woff'),
+    url('/src/assets/fonts/Unbounded-Regular.ttf') format('tff');
+}
+
+@font-face {
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Unbounded';
+  src: url('/src/assets/fonts/Unbounded-Medium.woff2') format('woff2'),
+    url('/src/assets/fonts/Unbounded-Medium.woff') format('woff'),
+    url('/src/assets/fonts/Unbounded-Medium.ttf') format('tff');
+}
+
+@font-face {
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  font-family: 'Unbounded';
+  src: url('/src/assets/fonts/Unbounded-Bold.woff2') format('woff2'),
+    url('/src/assets/fonts/Unbounded-Bold.woff') format('woff'),
+    url('/src/assets/fonts/Unbounded-Bold.ttf') format('tff');
+}

@@ -6,7 +6,7 @@ import { ApiActionName, REDUCER_NAME } from "@utils/constant";
 
 export const fetchContacts = createAsyncThunk<
   Contact[],
-  string,
+  undefined,
   {
     dispatch: AppDispatch;
     state: State;

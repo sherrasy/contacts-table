@@ -1,0 +1,17 @@
+.add-contact-page {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 16px;
+
+  &__wrapper {
+    margin-top: 230px;
+    margin-left: 15px;
+    width: 539px;
+  }
+
+  &__title {
+    font-family: 'Unbounded';
+    font-size: 30px;
+  }
+}
