@@ -3,6 +3,7 @@ import { Contact } from "./contact.interface";
 
 export type ContactsState = {
     contacts: Contact[] | null; 
+    sorting: string | null; 
     isLoading: boolean;
     hasError: boolean; 
   };

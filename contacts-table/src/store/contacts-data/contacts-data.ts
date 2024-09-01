@@ -1,10 +1,11 @@
 import { ContactsState } from "@/types/state.type";
 import { REDUCER_NAME } from "@/utils/constant";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchContacts } from "./api-actions";
 
 const initialState: ContactsState = {
     contacts: null,
+    sorting: null,
     isLoading: false,
     hasError: false
   };
@@ -12,7 +13,11 @@ const initialState: ContactsState = {
   export const contactsData = createSlice({
     name: REDUCER_NAME,
     initialState,
-    reducers: {    },
+    reducers: {  
+      setCurrentSorting: (state, action: PayloadAction<string|null>) => {
+        state.sorting = action.payload;
+      },
+      },
     extraReducers(builder) {
       builder
         .addCase(fetchContacts.pending, (state) => {
@@ -30,3 +35,4 @@ const initialState: ContactsState = {
     }
   });
   
+  export const { setCurrentSorting } = contactsData.actions;

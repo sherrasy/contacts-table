@@ -1,11 +1,11 @@
 import AddButton from '@components/add-button/add-button';
 import { useAppSelector } from '@utils/hooks';
 import Table from '@components/table/table';
-import { getContacts, getIsLoading } from '@store/contacts-data/selectors';
+import { getIsLoading, getSortedContacts } from '@store/contacts-data/selectors';
 import Loader from '@/components/loader/loader';
 
 function MainPage(): JSX.Element {
-  const contacts = useAppSelector(getContacts);
+  const contacts = useAppSelector(getSortedContacts());
   const isLoading = useAppSelector(getIsLoading);
   return (
     <div className='main-page'>
