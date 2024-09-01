@@ -1,12 +1,12 @@
-import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom';
-import { AppRoute } from '@utils/constant';
-import MainPage from '@pages/main-page/main-page';
+import EditContactPage from '@/pages/edit-contact-page/edit-contact-page';
+import ErrorMessage from '@components/error-message/error-message';
 import AddContactPage from '@pages/add-contact-page/add-contact-page';
+import MainPage from '@pages/main-page/main-page';
+import { fetchContacts } from '@store/contacts-data/api-actions';
+import { AppRoute } from '@utils/constant';
 import { useAppDispatch } from '@utils/hooks';
 import { useEffect } from 'react';
-import { fetchContacts } from '@store/contacts-data/api-actions';
-import EditContactPage from '@/pages/edit-contact-page/edit-contact-page';
-import ErrorMessage from '../error-message/error-message';
+import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
 const routes: RouteObject[] = [
   {

@@ -1,6 +1,6 @@
-import { ContactsState } from '@/types/state.type';
-import { REDUCER_NAME } from '@/utils/constant';
+import { ContactsState } from '@frontend-types/state.type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { REDUCER_NAME } from '@utils/constant';
 import { addContact, editContact, fetchContacts } from './api-actions';
 
 const initialState: ContactsState = {

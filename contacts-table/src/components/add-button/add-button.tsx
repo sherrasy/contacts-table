@@ -5,7 +5,7 @@ type AddButtonProps = {
   isDisabled: boolean;
 };
 
-function AddButton({isDisabled}:AddButtonProps): JSX.Element {
+function AddButton({ isDisabled }: AddButtonProps): JSX.Element {
   const navigate = useNavigate();
   const handleRedirect = () => {
     navigate(AppRoute.AddContact);

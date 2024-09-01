@@ -1,4 +1,4 @@
-import { AppRoute } from '@/utils/constant';
+import { AppRoute } from '@utils/constant';
 import { Contact } from '@frontend-types/contact.interface';
 import { useNavigate } from 'react-router-dom';
 

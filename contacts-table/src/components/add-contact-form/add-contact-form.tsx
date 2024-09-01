@@ -1,6 +1,7 @@
-import { addContact } from '@/store/contacts-data/api-actions';
-import { useAppDispatch } from '@/utils/hooks';
+import { addContact } from '@store/contacts-data/api-actions';
+import { getIsPosting } from '@store/contacts-data/selectors';
 import { AppRoute, ContactFieldName, FormFieldName } from '@utils/constant';
+import { useAppDispatch, useAppSelector } from '@utils/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ function AddContactForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(contactDataDefault);
-
+  const isPosting = useAppSelector(getIsPosting);
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
@@ -70,7 +71,7 @@ function AddContactForm(): JSX.Element {
             required
           />
         </div>
-        <button className='contact-form__button' type='submit'>
+        <button className='contact-form__button' type='submit' disabled={isPosting}>
           <span>Добавить контакт</span>
         </button>
       </form>

@@ -19,6 +19,7 @@
 
     &:disabled {
       cursor: auto;
+      background-color: lighten($color: $color-purple-heart, $amount: 10);
     }
 
     & > span {

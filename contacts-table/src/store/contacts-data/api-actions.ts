@@ -1,10 +1,10 @@
-import { AppDispatch, State } from "@frontend-types/state.type";
+import { AddContactDto } from "@dto/add-contact.dto";
+import { EditContactDto } from "@dto/edit-contact.dto";
 import { Contact } from "@frontend-types/contact.interface";
+import { AppDispatch, State } from "@frontend-types/state.type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AxiosInstance } from "axios";
 import { ApiActionName, REDUCER_NAME } from "@utils/constant";
-import { AddContactDto } from "@/dto/add-contact.dto";
-import { EditContactDto } from "@/dto/edit-contact.dto";
+import { AxiosInstance } from "axios";
 
 export const fetchContacts = createAsyncThunk<
   Contact[],

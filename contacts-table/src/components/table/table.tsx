@@ -1,11 +1,11 @@
-import { ContactFieldName, sortingParams } from '@/utils/constant';
 import Arrow from '@assets/icon/arrow.svg';
+import { Contact } from '@frontend-types/contact.interface';
+import { setCurrentSorting } from '@store/contacts-data/contacts-data';
+import { getSorting } from '@store/contacts-data/selectors';
+import { ContactFieldName, sortingParams } from '@utils/constant';
+import { useAppDispatch, useAppSelector } from '@utils/hooks';
 import { useEffect } from 'react';
 import TableRow from './table-row';
-import { Contact } from '@frontend-types/contact.interface';
-import { setCurrentSorting } from '@/store/contacts-data/contacts-data';
-import { useAppDispatch, useAppSelector } from '@/utils/hooks';
-import { getSorting } from '@/store/contacts-data/selectors';
 
 type TableProps = {
   contacts: Contact[]|null;

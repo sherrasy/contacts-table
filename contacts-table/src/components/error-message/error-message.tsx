@@ -1,6 +1,6 @@
-import { getIsLoading } from "@/store/contacts-data/selectors";
-import { useAppSelector } from "@/utils/hooks";
+import { getIsLoading } from "@store/contacts-data/selectors";
 import { AppMessage, AppRoute } from "@utils/constant";
+import { useAppSelector } from "@utils/hooks";
 import { useNavigate } from "react-router-dom";
 
 function ErrorMessage(): JSX.Element {

@@ -1,7 +1,8 @@
-import { editContact } from '@/store/contacts-data/api-actions';
-import { Contact } from '@/types/contact.interface';
-import { AppRoute, ContactFieldName, FormFieldName } from '@/utils/constant';
-import { useAppDispatch } from '@/utils/hooks';
+import { Contact } from '@frontend-types/contact.interface';
+import { editContact } from '@store/contacts-data/api-actions';
+import { getIsPosting } from '@store/contacts-data/selectors';
+import { AppRoute, ContactFieldName, FormFieldName } from '@utils/constant';
+import { useAppDispatch, useAppSelector } from '@utils/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(contact);
+  const isPosting = useAppSelector(getIsPosting);
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -71,7 +73,7 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
             onBlur={handleInputChange}
           />
         </div>
-        <button className='contact-form__button' type='submit'>
+        <button className='contact-form__button' type='submit' disabled={isPosting}>
           <span>Редактировать контакт</span>
         </button>
       </form>

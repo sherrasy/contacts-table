@@ -1,8 +1,8 @@
 import AddButton from '@components/add-button/add-button';
-import { useAppSelector } from '@utils/hooks';
+import Loader from '@components/loader/loader';
 import Table from '@components/table/table';
 import { getIsLoading, getSortedContacts } from '@store/contacts-data/selectors';
-import Loader from '@/components/loader/loader';
+import { useAppSelector } from '@utils/hooks';
 
 function MainPage(): JSX.Element {
   const contacts = useAppSelector(getSortedContacts());
