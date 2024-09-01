@@ -1,6 +1,5 @@
-import { RouteObject, RouterProvider } from 'react-router-dom';
-import { createBrowserRouter } from 'react-router-dom';
-import { AppMessage, AppRoute } from '@utils/constant';
+import { createHashRouter, RouteObject, RouterProvider } from 'react-router-dom';
+import { AppRoute } from '@utils/constant';
 import MainPage from '@pages/main-page/main-page';
 import AddContactPage from '@pages/add-contact-page/add-contact-page';
 import { useAppDispatch } from '@utils/hooks';
@@ -27,7 +26,7 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createHashRouter(routes);
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
