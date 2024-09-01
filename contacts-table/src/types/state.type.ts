@@ -5,7 +5,9 @@ export type ContactsState = {
     contacts: Contact[] | null; 
     sorting: string | null; 
     isLoading: boolean;
+    isPosting: boolean;
     hasError: boolean; 
+    hasPostingError: boolean; 
   };
 
 export type AppDispatch = typeof store.dispatch;

@@ -1,12 +1,29 @@
+import { addContact } from '@/store/contacts-data/api-actions';
+import { useAppDispatch } from '@/utils/hooks';
 import { AppRoute, ContactFieldName, FormFieldName } from '@utils/constant';
-import { FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddContactForm(): JSX.Element {
+  const contactDataDefault = {
+    name: '',
+    email: '',
+    phone: '',
+  };
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState(contactDataDefault);
+
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = evt.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    navigate(AppRoute.Main);
+    dispatch(addContact(formData)).then(
+      (res) => res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
+    );;
   };
   return (
     <div className='contact-form'>
@@ -21,6 +38,8 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Name}
             className='form-input__input'
             placeholder='Иванов Иван Иванович'
+            onBlur={handleInputChange}
+            required
           />
         </div>
         <div className='contact-form__input form-input'>
@@ -33,6 +52,8 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Email}
             className='form-input__input'
             placeholder='example@mail.com'
+            onBlur={handleInputChange}
+            required
           />
         </div>
         <div className='contact-form__input form-input'>
@@ -45,10 +66,12 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Phone}
             className='form-input__input'
             placeholder='+7 999 999-99-99'
+            onBlur={handleInputChange}
+            required
           />
         </div>
         <button className='contact-form__button' type='submit'>
-        <span>Добавить контакт</span>
+          <span>Добавить контакт</span>
         </button>
       </form>
     </div>
