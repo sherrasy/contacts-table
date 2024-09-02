@@ -1,10 +1,13 @@
 import { ContactsState } from '@frontend-types/state.type';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { REDUCER_NAME } from '@utils/constant';
 import { addContact, editContact, fetchContacts } from './api-actions';
 
-const initialState: ContactsState = {
-  contacts: null,
+export const contactsAdapter = createEntityAdapter();
+
+const defaultState: ContactsState = {
+  ids:[],
+  entities: {},
   sorting: null,
   isLoading: false,
   isPosting: false,
@@ -14,7 +17,7 @@ const initialState: ContactsState = {
 
 export const contactsData = createSlice({
   name: REDUCER_NAME,
-  initialState,
+  initialState:contactsAdapter.getInitialState(defaultState),
   reducers: {
     setCurrentSorting: (state, action: PayloadAction<string | null>) => {
       state.sorting = action.payload;
@@ -25,8 +28,8 @@ export const contactsData = createSlice({
       .addCase(fetchContacts.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.contacts = action.payload;
+      .addCase(fetchContacts.fulfilled, (state, {payload}) => {
+        contactsAdapter.addMany(state, payload)
         state.isLoading = false;
         state.hasError = false;
       })
@@ -38,10 +41,8 @@ export const contactsData = createSlice({
         state.isPosting = true;
         state.hasPostingError = false;
       })
-      .addCase(addContact.fulfilled, (state, action) => {
-        state.contacts
-          ? state.contacts.push(action.payload)
-          : (state.contacts = [action.payload]);
+      .addCase(addContact.fulfilled, (state, {payload}) => {
+        contactsAdapter.addOne(state, payload)
         state.isPosting = false;
         state.hasPostingError = false;
       })
@@ -53,14 +54,8 @@ export const contactsData = createSlice({
         state.isPosting = true;
         state.hasPostingError = false;
       })
-      .addCase(editContact.fulfilled, (state, action) => {
-        if (!state.contacts) {
-          return;
-        }
-        const index = state.contacts.findIndex(
-          (item) => item.id === action.payload.id
-        );
-        state.contacts[index] = action.payload;
+      .addCase(editContact.fulfilled, (state, {payload}) => {
+        contactsAdapter.updateOne(state, {id:payload.id,changes:payload});
         state.isPosting = false;
         state.hasPostingError = false;
       })

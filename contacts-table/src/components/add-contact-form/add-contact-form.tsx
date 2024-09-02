@@ -1,6 +1,11 @@
+import { validateFormData } from '@/utils/helpers';
 import { addContact } from '@store/contacts-data/api-actions';
 import { getIsPosting } from '@store/contacts-data/selectors';
-import { AppRoute, ContactFieldName, FormFieldName } from '@utils/constant';
+import {
+  AppRoute,
+  ContactFieldName,
+  FormFieldName
+} from '@utils/constant';
 import { useAppDispatch, useAppSelector } from '@utils/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,11 +25,17 @@ function AddContactForm(): JSX.Element {
     setFormData({ ...formData, [name]: value });
   };
 
+
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(addContact(formData)).then(
-      (res) => res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
-    );;
+    const validationResults = validateFormData(formData);
+    const isValid = !Object.values(validationResults).includes(false);
+    if (isValid) {
+      dispatch(addContact(formData)).then(
+        (res) =>
+          res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
+      );
+    }
   };
   return (
     <div className='contact-form'>
@@ -39,7 +50,8 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Name}
             className='form-input__input'
             placeholder='Иванов Иван Иванович'
-            onBlur={handleInputChange}
+            value={formData.name}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -53,7 +65,8 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Email}
             className='form-input__input'
             placeholder='example@mail.com'
-            onBlur={handleInputChange}
+            value={formData.email}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -67,11 +80,16 @@ function AddContactForm(): JSX.Element {
             name={FormFieldName.Phone}
             className='form-input__input'
             placeholder='+7 999 999-99-99'
-            onBlur={handleInputChange}
+            onChange={handleInputChange}
+            value={formData.phone}
             required
           />
         </div>
-        <button className='contact-form__button' type='submit' disabled={isPosting}>
+        <button
+          className='contact-form__button'
+          type='submit'
+          disabled={isPosting}
+        >
           <span>Добавить контакт</span>
         </button>
       </form>

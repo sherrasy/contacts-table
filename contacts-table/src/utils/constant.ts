@@ -23,8 +23,8 @@ export const ApiConnectParam = {
   } as const;
 
   export const ValidationPattern = {
-    Email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/,
-    Phone: '',
+    email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/,
+    phone: /^\+\d{11}$/,
   } as const;
 
   export const AppRoute = {

@@ -1,3 +1,4 @@
+import { validateFormData } from '@/utils/helpers';
 import { Contact } from '@frontend-types/contact.interface';
 import { editContact } from '@store/contacts-data/api-actions';
 import { getIsPosting } from '@store/contacts-data/selectors';
@@ -24,10 +25,16 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
 
   const handleFormSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    await dispatch(editContact(formData)).then(
-      (res) => res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
-    );
+    const validationResults = validateFormData(formData);
+    const isValid = !Object.values(validationResults).includes(false);
+    if (isValid) {
+      await dispatch(editContact(formData)).then(
+        (res) =>
+          res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
+      );
+    }
   };
+  
   return (
     <div className='contact-form'>
       <form method='post' action='/' onSubmit={handleFormSubmit}>
@@ -73,7 +80,11 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
             onBlur={handleInputChange}
           />
         </div>
-        <button className='contact-form__button' type='submit' disabled={isPosting}>
+        <button
+          className='contact-form__button'
+          type='submit'
+          disabled={isPosting}
+        >
           <span>Редактировать контакт</span>
         </button>
       </form>
