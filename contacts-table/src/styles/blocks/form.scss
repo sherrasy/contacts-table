@@ -6,8 +6,12 @@
   }
 
   &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 277px;
     height: 60px;
+    padding: 22px 35px 21px;
     border-radius: 30px;
     border: 0;
     background-color: $color-purple-heart;
@@ -21,21 +25,32 @@
       cursor: auto;
       background-color: lighten($color: $color-purple-heart, $amount: 10);
     }
+  }
 
-    & > span {
-      font-family: 'Unbounded';
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
+  &__button-text {
+    font-family: 'Unbounded';
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transform: scale(1.3, 1);
+  }
+
+  &__error {
+    padding: 10px;
+    color: $color-purple-heart;
   }
 }
 
 .form-input {
-  margin: 20px 0;
+  margin: 10px 0 18px 0;
+
+  &:last-of-type {
+    margin-bottom: 16px;
+  }
 
   &__label {
     font-weight: 700;
+    color: $color-haiti;
   }
 
   &__label-required {

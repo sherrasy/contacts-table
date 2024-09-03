@@ -1,0 +1,8 @@
+@mixin default-title {
+  font-family: 'Unbounded';
+  color: $color-haiti;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 20px;
+  transform: scaleX(1.01);
+}

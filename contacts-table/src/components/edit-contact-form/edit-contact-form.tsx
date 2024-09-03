@@ -1,4 +1,3 @@
-import { FormData } from '@/types/form-data.type';
 import { validateFormData } from '@/utils/helpers';
 import { Contact } from '@frontend-types/contact.interface';
 import { editContact } from '@store/contacts-data/api-actions';
@@ -107,7 +106,7 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
           type='submit'
           disabled={isPosting}
         >
-          <span>Редактировать контакт</span>
+          <span className='contact-form__button-text'>Редактировать контакт</span>
         </button>
         {hasError && <p className='contact-form__error'>{AppMessage.Error}</p>}
         {invalidMessage && <p className='contact-form__error' >{invalidMessage}</p>}

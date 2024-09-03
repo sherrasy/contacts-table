@@ -6,12 +6,14 @@
 
   &__wrapper {
     margin-top: 230px;
-    margin-left: 15px;
     width: 539px;
   }
 
+  &__title-wrapper {
+    margin-bottom: 26px;
+  }
+
   &__title {
-    font-family: 'Unbounded';
-    font-size: 30px;
+    @include default-title;
   }
 }

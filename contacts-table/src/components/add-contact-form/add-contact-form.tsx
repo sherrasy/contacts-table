@@ -113,7 +113,7 @@ function AddContactForm(): JSX.Element {
           type='submit'
           disabled={isPosting}
         >
-          <span>Добавить контакт</span>
+          <span className='contact-form__button-text'>Добавить контакт</span>
         </button>
         {hasError && <p className='contact-form__error'>{AppMessage.Error}</p>}
         {invalidMessage && <p className='contact-form__error' >{invalidMessage}</p>}
