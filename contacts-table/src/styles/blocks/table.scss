@@ -21,6 +21,8 @@
   &__row,
   &__header-row {
     display: flex;
+    border-radius: 20px;
+    padding: 0 30px;
     gap: 50px;
   }
 

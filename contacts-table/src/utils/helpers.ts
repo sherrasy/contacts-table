@@ -17,7 +17,7 @@ export const sortContacts = (
 };
 
 const checkFieldNotEmpty = (value: string) =>
-    value.length >0 && value.trim() !== '';
+    value.length > 0 && value.trim() !== '';
 
 const checkPatternValidity = (value: string, pattern: RegExp) => pattern.test(value);
 
@@ -25,15 +25,11 @@ export const validateFormData = (formData: FormData) => {
     const validationResults: { [key: string]: boolean } = {};
     Object.entries(formData).map(([key, value]) => {
         const isNotEmpty = checkFieldNotEmpty(value);
-        const patternValue = key === FormFieldName.Phone ? value.replace(/[^+\d]/g, '') :value;
-        const isPatternValid =
-            key !== FormFieldName.Name
-                ? checkPatternValidity(
-                    patternValue,
-                    ValidationPattern[key as keyof typeof ValidationPattern]
-                )
-                : true;
+        const patternValue = key === FormFieldName.Phone ? value.replace(/[^+\d]/g, '') : value;
+        const isPatternValid = checkPatternValidity(patternValue, ValidationPattern[key as keyof typeof ValidationPattern]
+        );
         validationResults[key] = isNotEmpty && isPatternValid;
+    console.log(isNotEmpty, isPatternValid, key)
     });
 
     return validationResults;
@@ -45,6 +41,6 @@ export const formatPhoneNumber = (phoneNumber: string, type?: string): string =>
         return `+${phoneNumber.substring(0, 1)} (${phoneNumber.substring(1, 4)}) ${phoneNumber.substring(4, 7)}-${phoneNumber.substring(7, 9)}-${phoneNumber.substring(9, 12)}`;
     }
 
-    return `+${phoneNumber.substring(0,1)} ${phoneNumber.substring(1, 4)} ${phoneNumber.substring(4, 7)}-${phoneNumber.substring(7, 9)}-${phoneNumber.substring(9, 12)}`;
+    return `+${phoneNumber.substring(0, 1)} ${phoneNumber.substring(1, 4)} ${phoneNumber.substring(4, 7)}-${phoneNumber.substring(7, 9)}-${phoneNumber.substring(9, 12)}`;
 }
 

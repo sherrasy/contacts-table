@@ -106,7 +106,7 @@ function EditContactForm({ contact }: EditContactFormProps): JSX.Element {
           type='submit'
           disabled={isPosting}
         >
-          <span className='contact-form__button-text'>Редактировать контакт</span>
+          <span className='contact-form__button-text'>Редактировать</span>
         </button>
         {hasError && <p className='contact-form__error'>{AppMessage.Error}</p>}
         {invalidMessage && <p className='contact-form__error' >{invalidMessage}</p>}
