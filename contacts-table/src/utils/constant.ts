@@ -8,6 +8,7 @@ export const ApiConnectParam = {
   export const AppMessage = {
     Loading: 'Загрузка...',
     Error: 'Произошла ошибка. Попробуйте снова.',
+    ErrorValidation: 'Ошибка в заполнении полей. Проверьте данные',
   } as const;
 
   export const ContactFieldName = {

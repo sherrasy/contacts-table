@@ -1,10 +1,14 @@
-import { validateFormData } from '@/utils/helpers';
+import { formatPhoneNumber, validateFormData } from '@/utils/helpers';
 import { addContact } from '@store/contacts-data/api-actions';
-import { getIsPosting } from '@store/contacts-data/selectors';
 import {
+  getHasPostingError,
+  getIsPosting,
+} from '@store/contacts-data/selectors';
+import {
+  AppMessage,
   AppRoute,
   ContactFieldName,
-  FormFieldName
+  FormFieldName,
 } from '@utils/constant';
 import { useAppDispatch, useAppSelector } from '@utils/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
@@ -19,24 +23,43 @@ function AddContactForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(contactDataDefault);
+  const [invalidMessage, setInvalidMessage] = useState('');
   const isPosting = useAppSelector(getIsPosting);
+  const hasError = useAppSelector(getHasPostingError);
+
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const getValidationErrorMessage = (validationResults: {
+    [key: string]: boolean;
+  }) => {
+    const fields = Object.entries(validationResults).reduce((acc: string[], [key, value]) => {
+      if (value === false) {
+        acc.push(` ${key}`);
+      }
+      return acc;
+    }, []);
+    return `${AppMessage.ErrorValidation}:${fields}.`
+  }
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const validationResults = validateFormData(formData);
     const isValid = !Object.values(validationResults).includes(false);
     if (isValid) {
-      dispatch(addContact(formData)).then(
+      setInvalidMessage('');
+      dispatch(addContact({ ...formData, phone: formatPhoneNumber(formData.phone) })).then(
         (res) =>
           res.meta.requestStatus === 'fulfilled' && navigate(AppRoute.Main)
       );
+    } else {
+      const message = getValidationErrorMessage(validationResults);
+      setInvalidMessage(message);
     }
   };
+
   return (
     <div className='contact-form'>
       <form method='post' action='/' onSubmit={handleFormSubmit}>
@@ -92,6 +115,8 @@ function AddContactForm(): JSX.Element {
         >
           <span>Добавить контакт</span>
         </button>
+        {hasError && <p className='contact-form__error'>{AppMessage.Error}</p>}
+        {invalidMessage && <p className='contact-form__error' >{invalidMessage}</p>}
       </form>
     </div>
   );

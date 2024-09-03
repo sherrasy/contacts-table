@@ -39,6 +39,7 @@ export const addContact = createAsyncThunk<
   async (dto, { extra: api }) => {
     try {
       const { data } = await api.post<Contact>('', dto);
+      data.id = Math.floor(Math.random() * (100 - 7 + 1)) + 7;
       return data;
     } catch (error) {
       return Promise.reject(error);
@@ -47,7 +48,7 @@ export const addContact = createAsyncThunk<
 );
 
 export const editContact = createAsyncThunk<
-  Contact,
+  Contact|EditContactDto,
   EditContactDto,
   {
     dispatch: AppDispatch;
@@ -58,6 +59,9 @@ export const editContact = createAsyncThunk<
   `${REDUCER_NAME}/${ApiActionName.EditContact}`,
   async (dto, { extra: api }) => {
     try {
+      if(dto.id>6){
+        return dto;
+      }
       const { data } = await api.patch<Contact>(`/${dto.id}`, dto);
       return data;
     } catch (error) {
