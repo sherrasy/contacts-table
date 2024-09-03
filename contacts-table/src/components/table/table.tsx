@@ -32,8 +32,8 @@ function Table({contacts}:TableProps): JSX.Element {
 
  useEffect(()=>{},[sorting])
   return (
-    <>
       <div className='main-page__table contacts-table'>
+        <div className='main-page__table-wrapper'>
         <div className='contacts-table__header-row'>
           <p className='contacts-table__header-row-cell'onClick={handleSortingChange}>
             <span >{ContactFieldName.Name}</span> 
@@ -43,8 +43,8 @@ function Table({contacts}:TableProps): JSX.Element {
           <p className='contacts-table__header-row-cell'>{ContactFieldName.Phone}</p>
         </div>
         {contacts?.map((contact) => <TableRow contact={contact} key={contact.id}/>)}
+        </div>
       </div>
-    </>
   );
 }
 export default Table;

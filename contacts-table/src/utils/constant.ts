@@ -24,6 +24,7 @@ export const ApiConnectParam = {
   } as const;
 
   export const ValidationPattern = {
+    name:  /^[а-яА-Я\s\-']+$/g,
     email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/,
     phone: /^\+\d{11}$/,
   } as const;
