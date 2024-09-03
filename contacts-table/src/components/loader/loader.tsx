@@ -1,4 +1,4 @@
-import { AppMessage } from "@/utils/constant";
+import { AppMessage } from "@utils/constant";
 
 function Loader(): JSX.Element {
     return (

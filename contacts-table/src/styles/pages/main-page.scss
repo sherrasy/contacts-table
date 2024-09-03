@@ -12,14 +12,12 @@
   &__title-wrapper {
     display: flex;
     align-items: center;
-    margin-left: 16px;
-    gap: 30px;
+    gap: 32px;
   }
 
   &__title,
   &__loader {
-    font-family: 'Unbounded';
-    font-size: 30px;
+    @include default-title;
   }
 
   &__loader {

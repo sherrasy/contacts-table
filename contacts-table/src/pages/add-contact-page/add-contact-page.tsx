@@ -1,5 +1,5 @@
-import CloseButton from '@components/close-button/close-button';
 import AddContactForm from '@components/add-contact-form/add-contact-form';
+import CloseButton from '@components/close-button/close-button';
 
 function AddContactPage(): JSX.Element {
   return (

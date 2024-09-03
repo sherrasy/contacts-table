@@ -1,6 +1,6 @@
+import CloseIcon from '@assets/icon/close.svg';
 import { AppRoute } from '@utils/constant';
 import { useNavigate } from 'react-router-dom';
-import CloseIcon from '@assets/icon/close.svg';
 
 function CloseButton(): JSX.Element {
   const navigate = useNavigate();

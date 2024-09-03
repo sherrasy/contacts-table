@@ -8,6 +8,7 @@ export const ApiConnectParam = {
   export const AppMessage = {
     Loading: 'Загрузка...',
     Error: 'Произошла ошибка. Попробуйте снова.',
+    ErrorValidation: 'Ошибка в заполнении полей. Проверьте данные',
   } as const;
 
   export const ContactFieldName = {
@@ -23,8 +24,8 @@ export const ApiConnectParam = {
   } as const;
 
   export const ValidationPattern = {
-    Email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/,
-    Phone: '',
+    email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/,
+    phone: /^\+\d{11}$/,
   } as const;
 
   export const AppRoute = {

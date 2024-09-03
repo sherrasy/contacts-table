@@ -4,12 +4,13 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'/',
+  base:'/contacts-table/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@dto': path.resolve(__dirname, './src/dto'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@services': path.resolve(__dirname, './src/services'),
       '@store': path.resolve(__dirname, './src/store'),

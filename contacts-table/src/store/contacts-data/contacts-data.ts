@@ -1,32 +1,69 @@
-import { ContactsState } from "@/types/state.type";
-import { REDUCER_NAME } from "@/utils/constant";
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts } from "./api-actions";
+import { ContactsState } from '@frontend-types/state.type';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { REDUCER_NAME } from '@utils/constant';
+import { addContact, editContact, fetchContacts } from './api-actions';
 
-const initialState: ContactsState = {
-    contacts: null,
-    isLoading: false,
-    hasError: false
-  };
+export const contactsAdapter = createEntityAdapter();
 
-  export const contactsData = createSlice({
-    name: REDUCER_NAME,
-    initialState,
-    reducers: {    },
-    extraReducers(builder) {
-      builder
-        .addCase(fetchContacts.pending, (state) => {
-          state.isLoading = true;
-        })
-        .addCase(fetchContacts.fulfilled, (state, action) => {
-          state.contacts = action.payload;
-          state.isLoading = false;
-          state.hasError = false;
-        })
-        .addCase(fetchContacts.rejected, (state) => {
-          state.isLoading = false;
-          state.hasError = true;
-        })
-    }
-  });
-  
+const defaultState: ContactsState = {
+  ids:[],
+  entities: {},
+  sorting: null,
+  isLoading: false,
+  isPosting: false,
+  hasError: false,
+  hasPostingError: false,
+};
+
+export const contactsData = createSlice({
+  name: REDUCER_NAME,
+  initialState:contactsAdapter.getInitialState(defaultState),
+  reducers: {
+    setCurrentSorting: (state, action: PayloadAction<string | null>) => {
+      state.sorting = action.payload;
+    },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchContacts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContacts.fulfilled, (state, {payload}) => {
+        contactsAdapter.addMany(state, payload)
+        state.isLoading = false;
+        state.hasError = false;
+      })
+      .addCase(fetchContacts.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      })
+      .addCase(addContact.pending, (state) => {
+        state.isPosting = true;
+        state.hasPostingError = false;
+      })
+      .addCase(addContact.fulfilled, (state, {payload}) => {
+        contactsAdapter.addOne(state, payload)
+        state.isPosting = false;
+        state.hasPostingError = false;
+      })
+      .addCase(addContact.rejected, (state) => {
+        state.isPosting = false;
+        state.hasPostingError = true;
+      })
+      .addCase(editContact.pending, (state) => {
+        state.isPosting = true;
+        state.hasPostingError = false;
+      })
+      .addCase(editContact.fulfilled, (state, {payload}) => {
+        contactsAdapter.updateOne(state, {id:payload.id,changes:payload});
+        state.isPosting = false;
+        state.hasPostingError = false;
+      })
+      .addCase(editContact.rejected, (state) => {
+        state.isPosting = false;
+        state.hasPostingError = true;
+      });
+  },
+});
+
+export const { setCurrentSorting } = contactsData.actions;

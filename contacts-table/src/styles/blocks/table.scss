@@ -5,23 +5,22 @@
 
 .contacts-table {
   .sort-arrow {
-    margin-left: 6px;
+    margin-left: 4px;
   }
 
   .sort-arrow--reverse {
-    margin-left: 6px;
+    margin-left: 4px;
     transform: rotate(180deg);
   }
 
   .sort-arrow--none {
-    margin-left: 6px;
+    margin-left: 4px;
     opacity: 0.3;
   }
 
   &__row,
   &__header-row {
     display: flex;
-    padding-left: 16px;
     gap: 50px;
   }
 
@@ -37,6 +36,14 @@
   &__header-row-cell,
   &__row-cell {
     width: 245px;
+  }
+
+  &__header-row-cell {
+    margin-bottom: 12px;
+  }
+
+  &__row-cell {
+    margin-bottom: 24px;
   }
 
   &__header-row-cell:first-child,
