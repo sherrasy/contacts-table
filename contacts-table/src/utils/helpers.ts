@@ -19,9 +19,7 @@ export const sortContacts = (
 const checkFieldNotEmpty = (value: string) =>
     value.length > 0 && value.trim() !== '';
 
-const checkPatternValidity = (value: string, pattern: RegExp) =>{
-    console.log(value, pattern)
-    return pattern.test(value)};
+const checkPatternValidity = (value: string, pattern: RegExp) => pattern.test(value);
 
 export const validateFormData = (formData: FormData) => {
     const validationResults: { [key: string]: boolean } = {};
