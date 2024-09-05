@@ -1,5 +1,10 @@
 .main-page__table {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -10,6 +15,8 @@
 
   .sort-arrow--reverse {
     margin-left: 4px;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
     transform: rotate(180deg);
   }
 
@@ -20,6 +27,8 @@
 
   &__row,
   &__header-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     border-radius: 20px;
     padding: 0 30px;
