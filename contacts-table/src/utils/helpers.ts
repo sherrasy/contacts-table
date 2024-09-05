@@ -29,7 +29,6 @@ export const validateFormData = (formData: FormData) => {
         const isPatternValid = checkPatternValidity(patternValue, ValidationPattern[key as keyof typeof ValidationPattern]
         );
         validationResults[key] = isNotEmpty && isPatternValid;
-    console.log(isNotEmpty, isPatternValid, key)
     });
 
     return validationResults;

@@ -1,8 +1,9 @@
 .error-message {
-  display: flex;
+  @include default-centered-element;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   font-family: 'Unbounded';
   font-size: 30px;

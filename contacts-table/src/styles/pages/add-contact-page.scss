@@ -1,8 +1,5 @@
 .add-contact-page {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  font-size: 16px;
+  @include default-centered-page;
 
   &__wrapper {
     margin-top: 230px;

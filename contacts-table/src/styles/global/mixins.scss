@@ -6,3 +6,17 @@
   margin-bottom: 20px;
   transform: scaleX(1.01);
 }
+@mixin default-centered-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin default-centered-page {
+  @include default-centered-element;
+  min-height: 100vh;
+  font-size: 16px;
+}
